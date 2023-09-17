@@ -99,7 +99,7 @@ body {
   /* Menu styles */
  
   .navbar-menu {
-    background-color: #232F3E;/*#060b26;*/
+    background-color: #232F3E;
     height: 60px;
     display: flex;
     justify-content: start;
@@ -114,7 +114,7 @@ body {
   }
 
   .nav-menu {
-    background-color: #232F3E;/*#060b26*/;
+    background-color: #232F3E;
     width: 250px;
     height: 100vh;
     display: flex;
