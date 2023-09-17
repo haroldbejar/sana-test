@@ -1,0 +1,167 @@
+body {
+    background-color: #DBDBDB;
+}
+/* Estilos barra de navegación (Navbar.css) */
+.navbar {
+    background-color: #333; 
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 999; 
+  }
+  
+  .brand {
+    font-size: 34px;
+    font-weight: bold;
+    margin-left: 8px;
+  }
+  
+  .search {
+    flex-grow: 1;
+    margin: 0 20px;
+  }
+  
+  .usersession  {
+    font-size: 20px;
+    margin-right: 20px;
+  }
+
+  .cart {
+    font-size: 30px;
+    margin-right: 34px;
+  }
+ 
+  .txtSearch {
+    margin-left: 50px;
+    padding: 8px;
+    width: 650px;
+    border-radius: 10px;
+    border: none;
+  }
+
+  .btnSearch {
+    margin-left: 10px;
+    padding-left: 20px;
+    padding: 8px 0;
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+    background-color:chocolate;
+  }
+
+  .btnSearch:hover{
+    background-color:burlywood; 
+  }
+
+ 
+
+  /* Estilos SubNavbar */
+
+  .subnavbar {
+    background-color: #232F3E; 
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px; 
+    top: 56px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 998;
+  }
+
+  .menu {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-top: 1px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .menu:hover {
+    color: chocolate;
+  }
+
+  /* Main Content */
+  .main-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Menu styles */
+ 
+  .navbar-menu {
+    background-color: #232F3E;/*#060b26;*/
+    height: 60px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    color: white;
+  }
+
+  .nav-menu {
+    background-color: #232F3E;/*#060b26*/;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top:81px;
+    left: -100%;
+    transition: 580ms;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    transition: 350ms;
+  }
+
+  .nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+  }
+
+  .nav-text a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+  }
+
+  .nav-text a:hover {
+    color: chocolate;
+  }
+
+  .nav-menu-items {
+    width: 100%;
+    list-style-type: none;
+  }
+
+  
+
+  
+
+
+  

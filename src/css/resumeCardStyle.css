@@ -1,0 +1,36 @@
+/* ResumeCard styles */
+.container-resume-card {
+    display: flex;
+    flex-direction: column;
+    color: rgb(66, 66, 66);
+  }
+  .title-row {
+    text-align: center;
+    line-height: 4.0;
+  }
+  
+  .span-row {
+    padding-left: 2rem;
+    line-height: 4.0;
+  }
+  
+  .span-totals{
+    padding-left: 2rem;
+  }
+  
+  .btn-row {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    padding: 1rem;
+    border-radius: 3px;
+    border-style: none;
+    margin-top: 10rem;
+    height: 88px;
+    background-color: white;
+  }
+
+ .btn-row:hover {
+    background-color: chocolate;
+    color: #fff;
+ }

@@ -1,0 +1,32 @@
+/* RowCard styles */
+.container-row-card {
+    width: 75vw;
+    height: 22vh;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
+  .image-row {
+    position: absolute;
+    width: 20vw;
+    height: 22vh;
+    /*background-color: red;*/
+  }
+  
+  .content-row {
+    position: absolute;
+    margin-left: 20vw;
+    width: 35vw;
+    height: 22vh;
+    /*background-color: chocolate;*/
+  }
+  
+  .actions-row {
+    position: absolute;
+    margin-left: 55vw;
+    width: 20vw;
+    height: 22vh;
+    /*background-color: yellow;*/
+  
+  }

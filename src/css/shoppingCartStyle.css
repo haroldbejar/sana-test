@@ -1,0 +1,25 @@
+/* Shopping cart styles */
+.link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .content-shopping {
+    position:absolute;
+    margin-top: 61px;
+    width: 75vw;
+    height: 100vh;
+  }
+
+  .shopping-resumen {
+    position:absolute;
+    margin-top: 61px;
+    margin-left: 76vw;
+    width: 22vw;
+    height: 60vh;
+    border-radius: 4px;
+    background-color:rgb(237, 235, 235);
+  }
