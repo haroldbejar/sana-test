@@ -17,11 +17,6 @@
     overflow-x: hidden;
 }
 
-.FlexContainer div {
-    width: 330px;
-    margin: 1px;
-}
-
 div.image-container {
     height: 30vh;
 }
@@ -116,4 +111,17 @@ div.actions-card {
   .hide {
     display: none;
     visibility: hidden;
+  }
+
+
+  @media (max-width: 600px) {
+    .FlexContainer {
+      width: 100% !important;
+    }
+
+    .image-card {
+      width: 100% !important;
+      height: 30vh;
+      object-fit: cover;
+    }
   }
