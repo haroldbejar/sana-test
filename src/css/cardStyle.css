@@ -112,16 +112,4 @@ div.actions-card {
     display: none;
     visibility: hidden;
   }
-
-
-  @media (max-width: 600px) {
-    .FlexContainer {
-      width: 100% !important;
-    }
-
-    .image-card {
-      width: 100% !important;
-      height: 30vh;
-      object-fit: cover;
-    }
-  }
+  
