@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import ProductContext from "../contexts/ProductContext";
+import { CartContext } from "../contexts/ShoppingCartContext";
 import endPoint from "../endPoints/endPoints";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 import axios from "axios";
 
 function SideMenu() {
-    const {currentPage, setTotalProducts, setProducts} = useContext(ProductContext);
+    const {currPage, setProduct} = useContext(CartContext);
     const [sidebar, setSidebar] = useState(false);
     const [listCategory, setListCategory] = useState([]);
     const showSidebar = () => setSidebar(!sidebar);
@@ -27,11 +27,10 @@ function SideMenu() {
     },[]);
 
     const handleClickCategory = async (id) => {
-        const url = `${endPoint.inventory.byCategoryId}/${id}/${currentPage}/${pageSize}`;
+        const url = `${endPoint.inventory.byCategoryId}/${id}/${currPage}/${pageSize}`;
         await axios.get(url)
         .then(response => {
-            setTotalProducts(response.data.inventory);
-            setProducts(response.data.inventory);
+            setProduct(response.data.inventory);
         }).catch(error => {
             console.error(error);
         })

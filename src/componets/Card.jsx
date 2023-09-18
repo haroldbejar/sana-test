@@ -1,55 +1,62 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import * as FaIcons from "react-icons/fa";
 import "../css/cardStyle.css";
-import ProductContext from "../contexts/ProductContext";
+import { CartContext } from "../contexts/ShoppingCartContext";
+
 
 const Card = ({
-    title,
+    code,
     name,
     description,
     price,
-    existence,
+    quantity: existence,
     urlImage,
     productId,
-    callBack
 }) => {
-    const { setAddToCart } = useContext(ProductContext);
-    const [quantity, setQuantity] = useState(0);
-    const [productsInCart, setProductsInCart] = useState(1);
-    const [isActive, setIsActive] = useState(false);
-    
 
-    
-    const addProductToCart = (idProduct) => {
-        setProductsInCart(productsInCart + 1);
-        setAddToCart(productsInCart);
-        setIsActive(true);
+    const {cart, setCart} = useContext(CartContext);
 
-        const objProduct = {
-            productId: idProduct,
-            productQuantity: quantity
-        }
-        callBack(objProduct, productsInCart);
+    const addProductToCart = () => {
+        setCart((currentProducts) => {
+            const isProductsFound = currentProducts.find((item) => item.productId === productId);
+            if (isProductsFound) {
+                return currentProducts.map((item) => {
+                    if (item.productId === productId) {
+                        return { ...item, quantity: item.quantity + 1 };
+                    } else {
+                        return item;
+                    }
+                });
+            } else {
+                return [...currentProducts, { productId, quantity: 1, price, urlImage, name }];
+            }
+        });
+    };
+
+    const removeProduct = (productId) => {
+        setCart((currentProducts) => {
+            if (currentProducts.find((item) => item.productId === productId)?.quantity === 1) {
+                return currentProducts.filter((item) => item.productId !== productId);
+            } else {
+                return currentProducts.map((item) => {
+                    if (item.productId === productId) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    } else {
+                        return item;
+                    }
+                });
+            }
+        });
     }
 
-    const handleQuantityUp = () => {
-        if (quantity >= existence) return;
-        setQuantity(quantity + 1);
-        setAddToCart(productsInCart);
-        setProductsInCart(productsInCart + 1);
-        setIsActive(true);
-    }
+    const getQuantityById = (productId) => {
+        return cart.find((item) => item.productId === productId)?.quantity || 0;
+    };
 
-    const handleQuantityDown = () => {
-        if (quantity == 0) return;
-        setQuantity(quantity - 1);
-        setProductsInCart(productsInCart - 1);
-        setAddToCart(productsInCart - 1);
+    const quantityPerProduct = getQuantityById(productId);
 
-    }
-
-    const productTitle = `${title} ${name} - Stock (${existence})`;
+    const productTitle = `${code} ${name} - Stock (${existence})`;
 
     return (
         <div className="FlexContainer">
@@ -72,28 +79,35 @@ const Card = ({
                 <span className="price-card">${price}</span>
             </div>
             <div className="actions-card">
-                <div>
-                    <FaIcons.FaCartPlus
-                        className={!isActive ? 'visible btn-card' : 'hide'}
-                        onClick={() => addProductToCart(productId)}
-                    />
-                </div>
-                <div className={isActive ? 'visible' : 'hide'}>
-                    <FaIcons.FaArrowUp
-                        className="arrow"
-                        onClick={handleQuantityUp}
-                    />
-                </div>
-                <div className={isActive ? 'visible' : 'hide'}>
-                    <span className="quantity-card">Qty {quantity}</span>
-                </div>
+                {quantityPerProduct === 0 ? (
+                    <div>
+                        <FaIcons.FaCartPlus
+                            className="btn-card"
+                            onClick={() => addProductToCart()}
+                        />
+                    </div>
+                ) : (
+                    <div>
+                        <FaIcons.FaArrowUp
+                            className="arrow"
+                            onClick={() => addProductToCart()}
+                        />
+                    </div>
+                )}
+                {quantityPerProduct > 0 && (
+                    <div>
+                        <span className="quantity-card">Qty {quantityPerProduct}</span>
+                    </div>
+                )}
 
-                <div className={isActive ? 'visible' : 'hide'}>
+                {quantityPerProduct > 0 && (
+                    <div>
                     <FaIcons.FaArrowDown
                         className="arrow"
-                        onClick={handleQuantityDown}
+                        onClick={() => removeProduct(productId)}
                     />
                 </div>
+                )}
             </div>
         </div>
     );
@@ -107,8 +121,6 @@ Card.propTypes = {
     price: PropTypes.number,
     existence: PropTypes.number,
     urlImage: PropTypes.string,
-    callBack: PropTypes.func,
-    sendToBuy: PropTypes.func
 }
 
 export default Card;

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useContext } from "react";
-import ProductContext from "../contexts/ProductContext";
+import { CartContext } from "../contexts/ShoppingCartContext";
 import MainContent from "../componets/MainContent";
 import Navbar from "../componets/Navbar";
 import SubNavbar from "../componets/SubNavbar";
@@ -8,7 +8,7 @@ import axios from "axios";
 import Pagination from "../componets/Pagination";
 
 const Home = () => {
-  const { setProducts, setCurrentPageContext } = useContext(ProductContext);
+  const { setProduct, setCurrPage } = useContext(CartContext);
   const [contentProducts, setContentProducts] =  useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,14 +18,14 @@ const Home = () => {
   const getProducts = useCallback(async() => {
     await axios.get(`${endPoints.inventory.paginate}/${currentPage}/${pageSize}`)
       .then(response =>{
-        setProducts(response.data.inventory);
+        setProduct(response.data.inventory);
         setContentProducts(response.data.inventory);
         setTotalPages(response.data.paginationData.totalPages);
         console.log(response)
       }).catch(error => {
         console.error(error);
       })
-  },[currentPage, setProducts])
+  },[currentPage, setProduct])
 
   useEffect(() => {
     getProducts();
@@ -37,12 +37,12 @@ const Home = () => {
         return element;
       }
     });
-    setProducts(searchedResult);
+    setProduct(searchedResult);
   }
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    setCurrentPageContext(newPage);
+    setCurrPage(newPage);
   }
 
     return (

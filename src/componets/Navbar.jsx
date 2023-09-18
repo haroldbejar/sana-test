@@ -3,13 +3,17 @@ import { FaCartArrowDown } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import routes from "../constants/routesNames";
-import ProductContext from "../contexts/ProductContext";
+import { CartContext } from "../contexts/ShoppingCartContext";
 
 const Navbar = ({callBackSearchItem}) => {
 
-  const {addToCart} = useContext(ProductContext);
+  const {cart} = useContext(CartContext);
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
+
+  const quantityStored = cart.reduce((acc, curr) => {
+    return acc + curr.quantity;
+  }, 0);
 
   const handleClickCart = () => {
     navigate(routes.shoppingCart);
@@ -46,7 +50,7 @@ const Navbar = ({callBackSearchItem}) => {
           className="icon-cart"
           onClick={handleClickCart}
         />
-        <sup>{addToCart}</sup>
+        <sup>{quantityStored}</sup>
       </div>
       <div className="usersession">User Session</div>
     </nav>
